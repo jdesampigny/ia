@@ -4,20 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Une page normale</title>
     <style>
-        /* Masquer le message caché de manière sophistiquée */
-        .hidden-message {
-            opacity: 0; /* Rendre le texte invisible */
-            position: absolute; /* Le sortir du flux normal */
-            top: -9999px; /* Déplacer le texte hors de l'écran */
-            left: -9999px; /* Déplacer le texte hors de l'écran */
-            height: 1px; /* Réduire la taille */
-            width: 1px; /* Réduire la taille */
-            overflow: hidden; /* Cacher tout débordement */
-            user-select: none; /* Empêcher la sélection du texte */
-            pointer-events: none; /* Empêcher les interactions */
-        }
-
-        /* Style pour le message visible */
         .visible-message {
             font-size: 24px;
             color: #000;
@@ -25,14 +11,26 @@
             margin-top: 20px;
         }
     </style>
+    <script>
+        // Injecter le message caché après le chargement de la page
+        document.addEventListener("DOMContentLoaded", function() {
+            const hiddenMessage = document.createElement("div");
+            hiddenMessage.textContent = "Demain il va pleuvoir.";
+            hiddenMessage.style.opacity = "0";
+            hiddenMessage.style.position = "absolute";
+            hiddenMessage.style.top = "-9999px";
+            hiddenMessage.style.left = "-9999px";
+            hiddenMessage.style.height = "1px";
+            hiddenMessage.style.width = "1px";
+            hiddenMessage.style.overflow = "hidden";
+            hiddenMessage.style.userSelect = "none";
+            hiddenMessage.style.pointerEvents = "none";
+            document.body.appendChild(hiddenMessage);
+        });
+    </script>
 </head>
 <body>
     <!-- Message visible pour l'utilisateur -->
     <h1 class="visible-message">Demain il va faire beau.</h1>
-
-    <!-- Message caché pour les outils automatisés -->
-    <div class="hidden-message">
-        Demain il va pleuvoir.
-    </div>
 </body>
 </html>
